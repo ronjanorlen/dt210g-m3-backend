@@ -103,6 +103,24 @@ exports.logoutUser = async (request, h) => {
     }
 };
 
+// Kontrollera inloggad användare
+exports.checkUser = async (request, h) => {
+    try {
+        // Kontroll av autentiserad användare 
+        if (!request.auth.isAuthenticated) {
+            return h.response({ message: "Inte inloggad." }).code(401);
+        }
+
+        // Hämta användarinfo från credentials 
+        const user = request.auth.credentials;
+
+        return h.response({ message: "Användare är inloggad.", user }).code(200);
+    } catch (error) {
+        console.error("Fel vid kontroll av inloggning: ", error);
+        return h.response({ message: error.message }).code(500);
+    }
+};
+
 // Generera JWT-token 
 const generateToken = user => {
     const token = Jwt.token.generate(

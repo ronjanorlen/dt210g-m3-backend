@@ -62,4 +62,14 @@ module.exports = (server) => {
         path: "/logout",
         handler: userController.logoutUser
     });
+
+    // Kontrollera inloggad användare 
+    server.route({
+        method: "GET",
+        path: "/checkUser",
+        handler: userController.checkUser,
+        options: {
+            auth: "session"
+        }
+    });
 };

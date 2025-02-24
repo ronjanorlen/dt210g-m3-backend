@@ -9,10 +9,13 @@ const init = async () => {
 
     const server = Hapi.server({
         port: process.env.PORT || 5000, // Port 5000 för backend 
-        host: "0.0.0.0",
+        host: "localhost",
         routes: {
             cors: {
-                origin: ["*"] // Tillåt alla cors-anrop
+                origin: ["http://localhost:5173"],  // ["*"] // Tillåt alla cors-anrop
+                credentials: true,
+                maxAge: 86400,
+                headers: ["Accept", "Content-Type", "Access-Control-Allow-Origin"]
             }
         }
     });
