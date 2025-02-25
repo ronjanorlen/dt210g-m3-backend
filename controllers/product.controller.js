@@ -2,8 +2,18 @@ const Product = require("../models/product.model"); // Inkludera produktmodel
 
 // Hämta alla produkter 
 exports.getProducts = async (request, h) => {
+
+    // sökfunktion
+    const { search } = request.query; 
+    let query = {}; // tomt objekt att börja med
+
+    if (search) {
+        query = { model: { $regex: search, $options: "i" } }; // Om search finns-filtrera
+    }
+
     try {
-        const products = await Product.find();
+        const products = await Product.find(query, {__v: 0});
+        
         // Kontrollera om det finns produkter att hämta 
         if (products.length === 0) {
             return h.response({ message: "Hittade inga produkter." }).code(404);
