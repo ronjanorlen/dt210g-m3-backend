@@ -23,27 +23,18 @@ module.exports = (server) => {
     server.route({
         method: "POST",
         path: "/products",
-        handler: ProductController.createProduct,
-        options: {
-            auth: false,
-        },
+        handler: ProductController.createProduct
     });
     // Uppdatera produkt
     server.route({
         method: "PUT",
         path: "/products/{id}",
-        handler: ProductController.updateProduct,
-        options: {
-            auth: false,
-        },
+        handler: ProductController.updateProduct
     });
     // Ta bort produkt 
     server.route({
         method: "DELETE",
         path: "/products/{id}",
-        handler: ProductController.deleteProduct,
-        options: {
-            auth: false,
-        },
+        handler: ProductController.deleteProduct
     });
 }
