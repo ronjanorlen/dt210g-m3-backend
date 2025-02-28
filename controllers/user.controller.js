@@ -1,4 +1,4 @@
-const User = require("../models/User.model"); // Inkludera user-model 
+const User = require("../models/user.model"); // Inkludera user-model 
 const Jwt = require("@hapi/jwt"); // Inkludera hapi jwt 
 const bcrypt = require("bcrypt"); // Inkludera bcrypt 
 require("dotenv").config(); // Inkludera dotenv 
